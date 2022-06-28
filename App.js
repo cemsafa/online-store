@@ -10,6 +10,7 @@ import ProductDetailScreen from "./src/screens/ProductDetailScreen";
 import ProductListScreen from "./src/screens/ProductListScreen";
 import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 import { Provider as AuthProvider } from "./src/context/AuthContext";
+import { setNavigator } from "./src/navigationRef";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 const productListFlow = createStackNavigator({
