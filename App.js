@@ -24,11 +24,11 @@ productListFlow.navigationOptions = {
 };
 
 const switchNavigator = createSwitchNavigator({
-  ResolveAuth: ResolveAuthScreen,
-  loginFlow: createStackNavigator({
-    Signup: SignupScreen,
-    Signin: SigninScreen,
-  }),
+  // ResolveAuth: ResolveAuthScreen,
+  // loginFlow: createStackNavigator({
+  //   Signup: SignupScreen,
+  //   Signin: SigninScreen,
+  // }),
   mainFlow: createBottomTabNavigator({
     productListFlow,
     OrderStatus: OrderStatusScreen,
