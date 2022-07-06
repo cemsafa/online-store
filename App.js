@@ -12,30 +12,40 @@ import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 import { Provider as AuthProvider } from "./src/context/AuthContext";
 import { setNavigator } from "./src/navigationRef";
 import { FontAwesome5 } from "@expo/vector-icons";
+import HomeScreen from "./src/screens/HomeScreen";
 
-const productListFlow = createStackNavigator({
-  ProductList: ProductListScreen,
-  ProductDetail: ProductDetailScreen,
-});
+const productListFlow = createStackNavigator(  
+  { 
+    Home: HomeScreen,
+    ProductList: ProductListScreen,
+    ProductDetail: ProductDetailScreen,
+  }, 
+  
+);
 
-productListFlow.navigationOptions = {
+productListFlow.navigationOptions = {    
   title: "Home",
   tabBarIcon: <FontAwesome5 name="home" size={20} />,
 };
 
-const switchNavigator = createSwitchNavigator({
-  ResolveAuth: ResolveAuthScreen,
-  loginFlow: createStackNavigator({
-    Signup: SignupScreen,
-    Signin: SigninScreen,
-  }),
+const switchNavigator = createSwitchNavigator(
+  
+{   
+  // ResolveAuth: ResolveAuthScreen,
+  // loginFlow: createStackNavigator({
+  //   Signup: SignupScreen,
+  //   Signin: SigninScreen,
+   
+  // }),
   mainFlow: createBottomTabNavigator({
+    
     productListFlow,
     OrderStatus: OrderStatusScreen,
     Cart: CartScreen,
     Profile: ProfileScreen,
   }),
-});
+}
+);
 
 const App = createAppContainer(switchNavigator);
 
