@@ -1,6 +1,7 @@
 import React from "react";
 import { SafeAreaView, Text, StyleSheet, View, Image, TouchableOpacity, ScrollView } from "react-native";
-import { Feather } from '@expo/vector-icons'; 
+import { AntDesign } from '@expo/vector-icons'; 
+
 
 
 
@@ -12,8 +13,10 @@ const ProfileScreen = () => {
         <TouchableOpacity>
         <Image source={require('../../assets/store_logo.png')} style={styles.logoImage}/> 
         </TouchableOpacity>
+
+        <AntDesign name="logout" size={20} color="black" style={styles.logout}/>
       
-      <Feather name="search" size={24} color="black" style={styles.search}/>
+     
       </View>
 
       <ScrollView style={styles.scrollView}>
@@ -27,21 +30,22 @@ const ProfileScreen = () => {
       </View>
 
         <View style={styles.listView}>
-        <TouchableOpacity style={styles.list}>
+
+        {/* <TouchableOpacity style={styles.list}>
           <Text style={styles.listText}>Wish List</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity style={styles.list}>
           <Text style={styles.listText}>Your Orders</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.list}>
+        {/* <TouchableOpacity style={styles.list}>
           <Text style={styles.listText}>Buy Again</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.list}>
           <Text style={styles.listText}>Your Account</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         </View>
         
@@ -80,7 +84,7 @@ const ProfileScreen = () => {
         </ScrollView>
 
 
-        <Text style={styles.viewingText}>Order again</Text>
+        {/* <Text style={styles.viewingText}>Order again</Text>
         
         <ScrollView style={styles.productView} horizontal={true} showsHorizontalScrollIndicator={false}>
 
@@ -112,7 +116,7 @@ const ProfileScreen = () => {
           
           </View>
           
-        </ScrollView>
+        </ScrollView> */}
 
 
       </ScrollView>
@@ -152,7 +156,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
 
   },
-  search: {    
+  logout: {    
     alignContent: 'center',
     justifyContent: 'flex-start',
     borderStyle: "solid",
@@ -167,7 +171,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     height: 70,
     flexDirection: 'row',
-    marginTop: 0,
+    marginTop: 30,
     //backgroundColor: '#F0EBE3',
     //borderBottomColor: '#DDDDDD',
     // borderColor: 'black',
@@ -194,7 +198,7 @@ const styles = StyleSheet.create({
   
   },
   listView:  {
-    //marginTop: 5,
+    marginTop: 20,
   },
   
   list: {
@@ -213,7 +217,7 @@ const styles = StyleSheet.create({
    
   },
   viewingText: {
-    marginTop: 20,
+    marginTop: 40,
     marginLeft: 10,
     fontSize: 25,
   },
