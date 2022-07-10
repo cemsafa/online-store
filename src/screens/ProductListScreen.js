@@ -1,17 +1,53 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, FlatList } from "react-native";
+import ProductItem from "../components/ProductItem";
+import { getProducts } from "../api/ProductsService";
 
-const ProductListScreen = () => {
+const ProductListScreen = ({ navigation }) => {
+  const { categoryId } = navigation.state.params;
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await getProducts(categoryId);
+      setProducts(response);
+    }
+    fetchData();
+  }, []);
+
+  function renderProduct({ item: product }) {
+    return (
+      <ProductItem
+        {...product}
+        onPress={() => {
+          navigation.navigate("ProductDetail", {
+            productId: product.id,
+          });
+        }}
+      />
+    );
+  }
+
   return (
-    <View style={styles.viewStyle}>
-      <Text style={styles.textStyle}>ProductListScreen</Text>
-    </View>
+    <FlatList
+      style={styles.productsList}
+      contentContainerStyle={styles.productsListContainer}
+      keyExtractor={(item) => item.id.toString()}
+      data={products}
+      renderItem={renderProduct}
+    />
   );
 };
 
 const styles = StyleSheet.create({
-  viewStyle: {},
-  textStyle: {},
+  productsList: {
+    backgroundColor: "#eeeeee",
+  },
+  productsListContainer: {
+    backgroundColor: "#eeeeee",
+    paddingVertical: 8,
+    marginHorizontal: 8,
+  },
 });
 
 export default ProductListScreen;

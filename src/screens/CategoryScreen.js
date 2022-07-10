@@ -1,17 +1,48 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, FlatList } from "react-native";
+import CategoryItem from "../components/CategoryItem";
+import { getCategories } from "../api/CategoriesService";
 
-const CategoryScreen = () => {
+const CategoryScreen = ({ navigation }) => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    setCategories(getCategories());
+  });
+
+  function renderCategorie({ item: category }) {
+    return (
+      <CategoryItem
+        {...category}
+        onPress={() => {
+          navigation.navigate("ProductList", {
+            categoryId: category.id,
+          });
+        }}
+      />
+    );
+  }
+
   return (
-    <View style={styles.viewStyle}>
-      <Text style={styles.textStyle}>CategoryScreen</Text>
-    </View>
+    <FlatList
+      style={styles.categoriesList}
+      contentContainerStyle={styles.categoriesListContainer}
+      keyExtractor={(item) => item.id.toString()}
+      data={categories}
+      renderItem={renderCategorie}
+    />
   );
 };
 
 const styles = StyleSheet.create({
-  viewStyle: {},
-  textStyle: {},
+  categoriesList: {
+    backgroundColor: "#eeeeee",
+  },
+  categoriesListContainer: {
+    backgroundColor: "#eeeeee",
+    paddingVertical: 8,
+    marginHorizontal: 8,
+  },
 });
 
 export default CategoryScreen;

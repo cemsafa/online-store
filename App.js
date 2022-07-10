@@ -5,15 +5,18 @@ import ProfileScreen from "./src/screens/ProfileScreen";
 import SigninScreen from "./src/screens/SigninScreen";
 import SignupScreen from "./src/screens/SignupScreen";
 import OrderStatusScreen from "./src/screens/OrderStatusScreen";
-import CartScreen from "./src/screens/CartScreen";
+import { CartScreen } from "./src/screens/CartScreen";
 import ProductDetailScreen from "./src/screens/ProductDetailScreen";
 import ProductListScreen from "./src/screens/ProductListScreen";
+import CategoryScreen from "./src/screens/CategoryScreen";
 import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 import { Provider as AuthProvider } from "./src/context/AuthContext";
+import { CartProvider } from "./src/context/CartContext";
 import { setNavigator } from "./src/navigationRef";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 const productListFlow = createStackNavigator({
+  Category: CategoryScreen,
   ProductList: ProductListScreen,
   ProductDetail: ProductDetailScreen,
 });
@@ -24,11 +27,11 @@ productListFlow.navigationOptions = {
 };
 
 const switchNavigator = createSwitchNavigator({
-  ResolveAuth: ResolveAuthScreen,
-  loginFlow: createStackNavigator({
-    Signup: SignupScreen,
-    Signin: SigninScreen,
-  }),
+  // ResolveAuth: ResolveAuthScreen,
+  // loginFlow: createStackNavigator({
+  //   Signup: SignupScreen,
+  //   Signin: SigninScreen,
+  // }),
   mainFlow: createBottomTabNavigator({
     productListFlow,
     OrderStatus: OrderStatusScreen,
@@ -42,7 +45,9 @@ const App = createAppContainer(switchNavigator);
 export default () => {
   return (
     <AuthProvider>
-      <App ref={(navigator) => setNavigator(navigator)} />
+      <CartProvider>
+        <App ref={(navigator) => setNavigator(navigator)} />
+      </CartProvider>
     </AuthProvider>
   );
 };
