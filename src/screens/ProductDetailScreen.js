@@ -15,15 +15,15 @@ const ProductDetailScreen = ({ navigation }) => {
   const { productId } = navigation.state.params;
   const [product, setProduct] = useState({});
 
-  // const { addItemToCart } = useContext(CartContext);
+  const { addItemToCart } = useContext(CartContext);
 
   useEffect(() => {
     setProduct(getProduct(productId));
   });
 
-  // function onAddToCart() {
-  //   addItemToCart(product.id);
-  // }
+  function onAddToCart() {
+    addItemToCart(product.id);
+  }
 
   function onBtnPress() {
     console.log(`Added product with id: ${productId}`);
@@ -37,8 +37,7 @@ const ProductDetailScreen = ({ navigation }) => {
           <Text style={styles.name}>{product.name}</Text>
           <Text style={styles.price}>$ {product.price}</Text>
           <Text style={styles.description}>{product.description}</Text>
-          {/* <Button onPress={onAddToCart} title="Add to cart" /> */}
-          <Button onPress={onBtnPress} title="Add to cart" />
+          <Button onPress={onAddToCart} title="Add to cart" />
         </View>
       </ScrollView>
     </SafeAreaView>
