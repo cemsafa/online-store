@@ -4,11 +4,16 @@ import ProductItem from "../components/ProductItem";
 import { getProducts } from "../api/ProductsService";
 
 const ProductListScreen = ({ navigation }) => {
+  const { categoryId } = navigation.state.params;
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    setProducts(getProducts());
-  });
+    async function fetchData() {
+      const response = await getProducts(categoryId);
+      setProducts(response);
+    }
+    fetchData();
+  }, []);
 
   function renderProduct({ item: product }) {
     return (

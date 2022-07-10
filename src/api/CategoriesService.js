@@ -48,9 +48,11 @@ const CATEGORIES = [
     name: "Shoes",
   },
 ];
+
 export function getCategories() {
   return CATEGORIES;
 }
+
 export function getCategory(id) {
   return CATEGORIES.find((category) => category.id == id);
 }
