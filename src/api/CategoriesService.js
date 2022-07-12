@@ -45,7 +45,7 @@ const CATEGORIES = [
   },
   {
     id: 111,
-    name: "Shoes",
+    name: "Jewelery",
   },
 ];
 
