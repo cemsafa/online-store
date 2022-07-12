@@ -8,6 +8,8 @@ import {
   SafeAreaView,
 } from "react-native";
 import { CartContext } from "../context/CartContext";
+import { FontAwesome } from "@expo/vector-icons";
+
 export function CartScreen({ navigation }) {
   const { items, getItemsCount, getTotalPrice } = useContext(CartContext);
 
@@ -49,6 +51,12 @@ export function CartScreen({ navigation }) {
     </SafeAreaView>
   );
 }
+
+CartScreen.navigationOptions = {
+  title: "Cart",
+  tabBarIcon: <FontAwesome name="shopping-cart" size={20} />,
+};
+
 const styles = StyleSheet.create({
   cartLine: {
     flexDirection: "row",
