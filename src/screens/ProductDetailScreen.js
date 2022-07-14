@@ -25,10 +25,6 @@ const ProductDetailScreen = ({ navigation }) => {
     addItemToCart(product.id);
   }
 
-  function onBtnPress() {
-    console.log(`Added product with id: ${productId}`);
-  }
-
   return (
     <SafeAreaView>
       <ScrollView>
@@ -42,6 +38,10 @@ const ProductDetailScreen = ({ navigation }) => {
       </ScrollView>
     </SafeAreaView>
   );
+};
+
+ProductDetailScreen.navigationOptions = {
+  title: "Product Detail",
 };
 
 const styles = StyleSheet.create({

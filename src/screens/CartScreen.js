@@ -1,14 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
 import {
   View,
-  Text,
-  Button,
   FlatList,
   StyleSheet,
   SafeAreaView,
+  TouchableOpacity,
 } from "react-native";
+import { Text, Button } from "react-native-elements";
 import { CartContext } from "../context/CartContext";
 import { FontAwesome } from "@expo/vector-icons";
+import { CartIcon } from "../components/CartIcon";
 
 export function CartScreen({ navigation }) {
   const { items, getItemsCount, getTotalPrice } = useContext(CartContext);
@@ -38,6 +39,9 @@ export function CartScreen({ navigation }) {
 
   return (
     <SafeAreaView>
+      <Text h2 style={styles.header}>
+        Cart
+      </Text>
       <View style={styles.infoContainer}>
         <FlatList
           style={styles.itemsList}
@@ -54,7 +58,17 @@ export function CartScreen({ navigation }) {
 
 CartScreen.navigationOptions = {
   title: "Cart",
-  tabBarIcon: <FontAwesome name="shopping-cart" size={20} />,
+  // tabBarIcon: <FontAwesome name="shopping-cart" size={20} />,
+  tabBarIcon: (
+    <TouchableOpacity>
+      <FontAwesome
+        name="shopping-cart"
+        size={20}
+        style={{ flex: 1, position: "absolute" }}
+      />
+      <CartIcon />
+    </TouchableOpacity>
+  ),
 };
 
 const styles = StyleSheet.create({
@@ -93,5 +107,10 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     padding: 16,
+  },
+  header: {
+    paddingTop: 16,
+    textAlign: "center",
+    fontWeight: "bold",
   },
 });

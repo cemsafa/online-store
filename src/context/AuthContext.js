@@ -39,7 +39,6 @@ const signup = (dispatch) => {
   return async ({ email, password }) => {
     try {
       const jsonData = JSON.stringify({ email, password });
-      console.log(jsonData);
       await AsyncStorage.setItem("user", jsonData);
       navigate("Category");
     } catch (err) {

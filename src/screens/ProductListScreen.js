@@ -39,6 +39,10 @@ const ProductListScreen = ({ navigation }) => {
   );
 };
 
+ProductListScreen.navigationOptions = {
+  title: "Product List",
+};
+
 const styles = StyleSheet.create({
   productsList: {
     backgroundColor: "#eeeeee",

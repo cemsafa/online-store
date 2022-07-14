@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { Text, StyleSheet } from "react-native";
-import { Button } from "react-native-elements";
+import { StyleSheet } from "react-native";
+import { Text, Button } from "react-native-elements";
 import { SafeAreaView } from "react-navigation";
 import Spacer from "../components/Spacer";
 import { Context as AuthContext } from "../context/AuthContext";
@@ -10,8 +10,10 @@ const ProfileScreen = () => {
   const { signout } = useContext(AuthContext);
 
   return (
-    <SafeAreaView forceInset={{ top: "always" }}>
-      <Text>Profile Screen</Text>
+    <SafeAreaView forceInset={{ top: "always" }} style={styles.container}>
+      <Text h2 style={styles.text}>
+        Welcome
+      </Text>
       <Spacer>
         <Button title="Sign Out" onPress={signout} />
       </Spacer>
@@ -24,6 +26,15 @@ ProfileScreen.navigationOptions = {
   tabBarIcon: <FontAwesome name="user" size={20} />,
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    marginBottom: 200,
+  },
+  text: {
+    textAlign: "center",
+  },
+});
 
 export default ProfileScreen;
